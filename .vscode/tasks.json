@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "g++.exe build active file",
+      "command": "E:\\MinGW\\x86_64-7.3.0-release-posix-seh-rt_v5-rev0\\mingw64\\bin\\g++.exe",
+      "args": [
+        "-g",
+        /*"${file}",*/
+        "${fileDirname}\\*.cpp",
+        "-o",
+        "\"${fileDirname}\\${fileBasenameNoExtension}.exe\"",
+        "-finput-charset=UTF-8",
+        "-fexec-charset=UTF-8",
+        "-std=c++17"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    }
+  ],
+  "options": {
+    "shell": {
+      "executable": "${env:SystemRoot}\\System32\\cmd.exe",
+      "args": [
+        "/c"
+      ]
+    },
+    "env": {
+      "Path": "E:\\MinGW\\x86_64-7.3.0-release-posix-seh-rt_v5-rev0\\mingw64\\bin:${env:Path}",
+      "PYTHONIOENCODING": "UTF-8"
+    }
+  }
+}
