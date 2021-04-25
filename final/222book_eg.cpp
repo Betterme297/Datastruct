@@ -327,7 +327,7 @@ int do_expression_calculate(char *exp, double *rst) {
 int main(){
     char exp3[] = "-2+3/1.5-(10*3)+40%2";
     char exp4[] = "-(3+4*5)+1*2.5";
-    char exp5[] = "3*60";
+    char exp5[] = "3*60-2";
     double rst1,rst2,rst3;
     do_expression_calculate(exp3, &rst1);
     do_expression_calculate(exp4, &rst2);
