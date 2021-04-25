@@ -256,7 +256,10 @@ int calculate(BiTreeNode *node, double *rst) {
                         *rst = fmod(l,r);
                         break;
                     case 'c':
-                        *rst = cos(r/180*pi);
+                        *rst = cos(r/180.0*pi);
+                        break;
+                    case 's':
+                        *rst = sin(r/180.0*pi);
                         break;
                     case '^' :
                         *rst = pow(l,r);
