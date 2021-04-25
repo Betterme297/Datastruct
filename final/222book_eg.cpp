@@ -69,7 +69,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
         //tan、sin等运算符前面应有+ - * /等运算符或者左括号
         else if(*(p+i) == 'n' || *(p+i) == 'p' || *(p+i) == 's'){
         if(get_sub_str(p,i-2,3) == "tan" || get_sub_str(p,i-2,3) == "sin" || get_sub_str(p,i-2,3) == "cos" || get_sub_str(p,i-2,3) == "exp"){
-            if(!(*(p+i-3) == '+' || *(p+i-3) == '-'||*(p+i-3) == '^'||*(p+i-3) == '*'||*(p+i-3) == '/'||*(p+i-3) == '%' || *(p+i-3) == '(')){
+            if(!(*(p+i-3) == '+' || *(p+i-3) == '-'||*(p+i-3) == '^'||*(p+i-3) == '*'||*(p+i-3) == '/'||*(p+i-3) == '%' || *(p+i-3) == '(' || i == 2)){
                 cout<<"Wrong expression: unexpected char appears on the left of Sin/Cos!"<<endl;
             }
             //表达式合法，rspt3记录该运算符的位置
@@ -178,7 +178,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 bitree_insert(tree, value, parent, side);
                 return 1;
             } 
-			else {	//此时表达式首一定是操作符'-'，其余部分被一对括号括起来
+			else if(rpst3 < 0){	//此时表达式首一定是操作符'-'，其余部分被一对括号括起来
                 char *value = (char *)malloc(4*sizeof(char));
                 strncpy(value, p, 1);
                 *(value+1) = '\0';
@@ -187,6 +187,16 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                     return 1;
                 else
                     return 0;
+            }
+            else{
+                char *value = (char *)malloc(4*sizeof(char));
+                strncpy(value, p+rpst3-2, 3);
+                *(value + 3) = '\0';
+                BiTreeNode * newNode = bitree_insert(tree, value, parent, side);
+                //if(create_expression_tree(tree, newNode, BITREE_NODE_LEFT, p, rpst3-2))
+                if(create_expression_tree(tree, newNode, BITREE_NODE_RIGHT, p+4, l-5))
+                        return 1;
+                return 0;
             }
         }
     } 
@@ -330,7 +340,7 @@ int do_expression_calculate(char *exp, double *rst) {
 int main(){
     char exp3[] = "-2+3/1.5-(10*3)+40%2";
     char exp4[] = "-(3+4*5)+1*2.5";
-    char exp5[] = "3*sin(60/2)";
+    char exp5[] = "sin(60)";
     double rst1,rst2,rst3;
     do_expression_calculate(exp3, &rst1);
     do_expression_calculate(exp4, &rst2);
