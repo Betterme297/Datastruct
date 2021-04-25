@@ -155,7 +155,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
         return 0;
     }
     //此时表明表达式要么是一个数字，要么是整体被一对括号括起来
-    if(rpst1 < 0) {
+    if(rpst1 < 0) {     // 此时没有* / % ^等运算符
         if(*p == '(') { //此时表达式整体被括号括起来
             if(create_expression_tree(tree, parent, side, p+1, l-2))
                 return 1;
@@ -330,12 +330,11 @@ int do_expression_calculate(char *exp, double *rst) {
 int main(){
     char exp3[] = "-2+3/1.5-(10*3)+40%2";
     char exp4[] = "-(3+4*5)+1*2.5";
-    char exp5[] = "3*60-2";
+    char exp5[] = "3*sin(60/2)";
     double rst1,rst2,rst3;
     do_expression_calculate(exp3, &rst1);
     do_expression_calculate(exp4, &rst2);
     do_expression_calculate(exp5, &rst3);
     cout<<rst1<<endl<<rst2<<endl<<rst3<<endl;
-    cout<<rst3<<endl;
     return 0;
 }
