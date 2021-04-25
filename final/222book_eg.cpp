@@ -143,7 +143,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 return 1;
         return 0;
     }
-    if(rpst3 > -1){     //存在正确的sin cos运算符，存入节点value中
+    /*if(rpst3 > -1){     //存在正确的sin cos运算符，存入节点value中
         char *value = (char *)malloc(4*sizeof(char));
         strncpy(value, p+rpst3-2, 3);
         *(value + 3) = '\0';
@@ -153,7 +153,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 return 1;
         }
         return 0;
-    }
+    }*/
     //此时表明表达式要么是一个数字，要么是整体被一对括号括起来
     if(rpst1 < 0) {     // 此时没有* / % ^等运算符
         if(*p == '(') { //此时表达式整体被括号括起来
