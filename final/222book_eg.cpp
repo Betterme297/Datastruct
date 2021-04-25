@@ -1,5 +1,5 @@
 #include<iostream>
-#include<string.h>
+#include<string.h>      
 #include<stdlib.h>
 #include<math.h>
 using namespace std;
@@ -7,7 +7,7 @@ typedef enum{
     BITREE_NODE_LEFT = 0,
     BITREE_NODE_RIGHT = 1
 }BiTreeNodeSide;
-#define pi 3.14159267
+#define pi 3.14159267       //this is a test
 typedef struct _BiTree BiTree;              //二叉树结构
 typedef struct _BiTreeNode BiTreeNode;      //二叉树结点
 typedef void * BiTreeValue;                 //二叉树中储存的数据
