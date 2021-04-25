@@ -200,7 +200,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 return 1;
         return 0;
     }
-}
+}  
 
 BiTreeNode *bitree_insert(BiTree *tree, BiTreeValue value,
 						BiTreeNode *parent, BiTreeNodeSide side) {
