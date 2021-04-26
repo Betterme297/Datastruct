@@ -190,7 +190,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
             }
             else{
                 char *value = (char *)malloc(4*sizeof(char));
-                strncpy(value, p+rpst3-2, 3);
+                strncpy(value, p, 3);
                 *(value + 3) = '\0';
                 BiTreeNode * newNode = bitree_insert(tree, value, parent, side);
                 //if(create_expression_tree(tree, newNode, BITREE_NODE_LEFT, p, rpst3-2))
@@ -342,8 +342,8 @@ int main(){
     char exp4[] = "-(3+4*5)+1*2.5";
     char exp5[] = "sin(60)";
     double rst1,rst2,rst3;
-    do_expression_calculate(exp3, &rst1);
-    do_expression_calculate(exp4, &rst2);
+    //do_expression_calculate(exp3, &rst1);
+    //do_expression_calculate(exp4, &rst2);
     do_expression_calculate(exp5, &rst3);
     cout<<rst1<<endl<<rst2<<endl<<rst3<<endl;
     return 0;
