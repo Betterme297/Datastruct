@@ -319,8 +319,8 @@ int do_expression_calculate(char *exp, double *rst) {
     int l = strlen(exp);
     BiTree *tree = bitree_new();
     create_expression_tree(tree, tree->rootnode, BITREE_NODE_LEFT, exp, l);
-    in_order_print(tree->rootnode);
-    cout<<endl;
+    //in_order_print(tree->rootnode);
+    //out<<endl;
     calculate(tree->rootnode, rst);
     //post_order_free(tree->rootnode);
     //bitree_free(tree);
@@ -341,7 +341,7 @@ int do_expression_calculate(char *exp, double *rst) {
 int main(){
     char exp3[] = "-2+3/1.5-(10*3)+40%2";
     char exp4[] = "-(3+4*5)+1*2.5";
-    char exp5[] = "2*sin(60/2)/3";
+    char exp5[] = "2^(1/sin(60/2))/3";
     char exp6[] = "sin(30)*exp(2)";
     double rst1,rst2,rst3,rst4;
     do_expression_calculate(exp3, &rst1);
