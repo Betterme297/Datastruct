@@ -163,7 +163,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 return 0;
         }
 		else {
-            if(*(p+1) != '(') {//此时表达式是一个数字
+            if(*(p+1) != '(' && *(p) != 's' && *(p) != 'c' && *(p) != 't' && *(p) != 'e') {//此时表达式是一个数字
                 for(i = 0; i < l; i++) {
                     if(*(p+i) == '.')
                         pn++;
