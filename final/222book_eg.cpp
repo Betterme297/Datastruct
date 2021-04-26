@@ -179,6 +179,17 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 return 1;
             } 
 			else if(rpst3 < 0){	//此时表达式首一定是操作符'-'，其余部分被一对括号括起来
+                if(*(p+1) == 's' || *(p+1) == 'c' || *(p+1) == 't' || *(p+1) == 'e'){   //若'-'后面为sin cos等，则不需要括号括起来
+                char *value = (char *)malloc(4*sizeof(char));
+                strncpy(value, p, 3);
+                *(value+3) == '\0';
+                BiTreeNode *newNode = bitree_insert(tree, value, parent, side);
+                if(create_expression_tree(tree, newNode, BITREE_NODE_RIGHT, p+5, l-6))
+                    return 1;
+                else
+                    return 0;
+                }
+                else{              
                 char *value = (char *)malloc(4*sizeof(char));
                 strncpy(value, p, 1);
                 *(value+1) = '\0';
@@ -187,6 +198,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                     return 1;
                 else
                     return 0;
+                }
             }
             else{
                 char *value = (char *)malloc(4*sizeof(char));
@@ -340,7 +352,7 @@ int do_expression_calculate(char *exp, double *rst) {
 int main(){
     char exp3[] = "-2+3/1.5-(10*3)+40%2";
     char exp4[] = "-(3+4*5)+1*2.5";
-    char exp5[] = "sin(60)";
+    char exp5[] = "-sin(60)";
     double rst1,rst2,rst3;
     //do_expression_calculate(exp3, &rst1);
     //do_expression_calculate(exp4, &rst2);
