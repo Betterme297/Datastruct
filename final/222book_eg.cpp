@@ -21,16 +21,12 @@ struct _BiTree{
     BiTreeNode * rootnode;          //根节点
     int nodenum;                    //节点数目
 };
-string get_sub_str(char *str, int start, int len)
-{
-/*char* res = (char*)malloc(len + 1);
-res[len] = 0;
-memcpy(res, str + start - 1, len);*/
+string get_sub_str(char *str, int start, int len)   //返回指定位置的字符串，用于读取sin cos 等
+{   
     string res(3,'\0');
     for(int i = start ;i< start+len; i++){
         res[i-start] = str[i];
     }
-    //res[len] = '\0';
 return res;
 }
 BiTreeNode *bitree_insert(BiTree *tree, BiTreeValue value,
@@ -92,7 +88,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
             //左括号前是运算符，合法，lnum计数加1
             s = get_sub_str(p, i-3 ,3);
             if(*(p+i-1) == '+' || *(p+i-1) == '-' || *(p+i-1) == '*' || *(p+i-1) == '/' || *(p+i-1) == '%'|| *(p+i-1) == '^'|| *(p+i-1) == '(' ||
-            s == "tan" || get_sub_str(p,i-3,3) == "sin" || get_sub_str(p,i-3,3) == "cos" || get_sub_str(p,i-3,3) == "exp")
+            s == "tan" || s == "sin" || s == "cos" || s == "exp")
                 lnum++;
             else {
                 printf("Wrong expression: unexpected char appears on the left of left bracket!\n");
@@ -178,7 +174,7 @@ int create_expression_tree(BiTree * tree, BiTreeNode * parent, BiTreeNodeSide si
                 bitree_insert(tree, value, parent, side);
                 return 1;
             } 
-			else if(rpst3 < 0){	//此时表达式首一定是操作符'-'，其余部分被一对括号括起来         
+			else if(rpst3 < 0){	    //此时表达式首一定是操作符'-'，其余部分被一对括号括起来         
                 char *value = (char *)malloc(4*sizeof(char));
                 strncpy(value, p, 1);
                 *(value+1) = '\0';
@@ -352,6 +348,9 @@ int main(){
     do_expression_calculate(exp4, &rst2);
     do_expression_calculate(exp5, &rst3);
     do_expression_calculate(exp6, &rst4);
-    cout<<rst1<<endl<<rst2<<endl<<rst3<<endl<<rst4<<endl;;
+    cout<<exp3<<" = "<<rst1<<endl;
+    cout<<exp4<<" = "<<rst2<<endl;
+    cout<<exp5<<" = "<<rst3<<endl;
+    cout<<exp6<<" = "<<rst4<<endl;
     return 0;
 }
