@@ -7,7 +7,7 @@ typedef enum{
     BITREE_NODE_LEFT = 0,
     BITREE_NODE_RIGHT = 1
 }BiTreeNodeSide;
-#define pi 3.14159267       //this is a test
+#define pi 3.14159267     
 typedef struct _BiTree BiTree;              //二叉树结构
 typedef struct _BiTreeNode BiTreeNode;      //二叉树结点
 typedef void * BiTreeValue;                 //二叉树中储存的数据
@@ -345,7 +345,7 @@ int do_expression_calculate(char *exp, double *rst) {
 int main(){
     char exp3[] = "-2+3/1.5-(10*3)+40%2";
     char exp4[] = "-(3+4*5)+1*2.5";
-    char exp5[] = "2*sin(60/2)";
+    char exp5[] = "2*sin(60/2)/3";
     char exp6[] = "sin(30)*exp(2)";
     double rst1,rst2,rst3,rst4;
     do_expression_calculate(exp3, &rst1);
